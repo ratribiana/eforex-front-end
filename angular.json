@@ -3,11 +3,11 @@
   "version": 1,
   "newProjectRoot": "",
   "projects": {
-    "forex": {
-      "root": "apps/forex/",
-      "sourceRoot": "apps/forex/src",
+    "zwap": {
+      "root": "apps/zwap/",
+      "sourceRoot": "apps/zwap/src",
       "projectType": "application",
-      "prefix": "forex",
+      "prefix": "zwap",
       "schematics": {
         "@nrwl/schematics:component": {
           "style": "scss"
@@ -17,13 +17,20 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/apps/forex",
-            "index": "apps/forex/src/index.html",
-            "main": "apps/forex/src/main.ts",
-            "polyfills": "apps/forex/src/polyfills.ts",
-            "tsConfig": "apps/forex/tsconfig.app.json",
-            "assets": ["apps/forex/src/favicon.ico", "apps/forex/src/assets"],
-            "styles": ["apps/forex/src/styles.scss"],
+            "outputPath": "dist/apps/zwap",
+            "index": "apps/zwap/src/index.html",
+            "main": "apps/zwap/src/main.ts",
+            "polyfills": "apps/zwap/src/polyfills.ts",
+            "tsConfig": "apps/zwap/tsconfig.app.json",
+            "assets": [
+              "apps/zwap/src/favicon.ico",
+              "apps/zwap/src/assets",
+              "apps/zwap/src/manifest.json"
+            ],
+            "styles": [
+              "apps/zwap/src/styles.scss",
+              "node_modules/flag-icon-css/css/flag-icon.min.css"
+            ],
             "scripts": [],
             "es5BrowserSupport": true
           },
@@ -31,8 +38,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "apps/forex/src/environments/environment.ts",
-                  "with": "apps/forex/src/environments/environment.prod.ts"
+                  "replace": "apps/zwap/src/environments/environment.ts",
+                  "with": "apps/zwap/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -50,34 +57,36 @@
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
                 }
-              ]
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "apps/zwap/ngsw-config.json"
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "forex:build",
-            "proxyConfig": "apps/forex//proxy.conf.json"
+            "browserTarget": "zwap:build",
+            "proxyConfig": "apps/zwap//proxy.conf.json"
           },
           "configurations": {
             "production": {
-              "browserTarget": "forex:build:production"
+              "browserTarget": "zwap:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "forex:build"
+            "browserTarget": "zwap:build"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "apps/forex/tsconfig.app.json",
-              "apps/forex/tsconfig.spec.json"
+              "apps/zwap/tsconfig.app.json",
+              "apps/zwap/tsconfig.spec.json"
             ],
             "exclude": ["**/node_modules/**"]
           }
@@ -85,81 +94,120 @@
         "test": {
           "builder": "@nrwl/builders:jest",
           "options": {
-            "jestConfig": "apps/forex/jest.config.js",
-            "tsConfig": "apps/forex/tsconfig.spec.json",
-            "setupFile": "apps/forex/src/test-setup.ts"
+            "jestConfig": "apps/zwap/jest.config.js",
+            "tsConfig": "apps/zwap/tsconfig.spec.json",
+            "setupFile": "apps/zwap/src/test-setup.ts"
           }
         }
       }
     },
-    "forex-e2e": {
-      "root": "apps/forex-e2e",
+    "zwap-e2e": {
+      "root": "apps/zwap-e2e",
       "projectType": "application",
       "prefix": "",
       "architect": {
         "e2e": {
           "builder": "@nrwl/builders:cypress",
           "options": {
-            "cypressConfig": "apps/forex-e2e/cypress.json",
-            "tsConfig": "apps/forex-e2e/tsconfig.e2e.json",
-            "devServerTarget": "forex:serve"
+            "cypressConfig": "apps/zwap-e2e/cypress.json",
+            "tsConfig": "apps/zwap-e2e/tsconfig.e2e.json",
+            "devServerTarget": "zwap:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "forex:serve:production"
+              "devServerTarget": "zwap:serve:production"
             }
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": "apps/forex-e2e/tsconfig.e2e.json",
+            "tsConfig": "apps/zwap-e2e/tsconfig.e2e.json",
             "exclude": ["**/node_modules/**"]
           }
         }
       }
     },
-    "api": {
-      "root": "apps/api",
-      "sourceRoot": "apps/api/src",
+    "zwap-admin": {
+      "root": "apps/zwap-admin/",
+      "sourceRoot": "apps/zwap-admin/src",
       "projectType": "application",
-      "prefix": "api",
-      "schematics": {},
+      "prefix": "zwap",
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "style": "scss"
+        }
+      },
       "architect": {
         "build": {
-          "builder": "@nrwl/builders:node-build",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/apps/api",
-            "main": "apps/api/src/main.ts",
-            "tsConfig": "apps/api/tsconfig.app.json",
-            "assets": ["apps/api/src/assets"]
+            "outputPath": "dist/apps/zwap-admin",
+            "index": "apps/zwap-admin/src/index.html",
+            "main": "apps/zwap-admin/src/main.ts",
+            "polyfills": "apps/zwap-admin/src/polyfills.ts",
+            "tsConfig": "apps/zwap-admin/tsconfig.app.json",
+            "assets": [
+              "apps/zwap-admin/src/favicon.ico",
+              "apps/zwap-admin/src/assets",
+              "apps/zwap-admin/src/manifest.json"
+            ],
+            "styles": ["apps/zwap-admin/src/styles.scss"],
+            "scripts": [],
+            "es5BrowserSupport": true
           },
           "configurations": {
             "production": {
-              "optimization": true,
-              "extractLicenses": true,
-              "inspect": false,
               "fileReplacements": [
                 {
-                  "replace": "apps/api/src/environments/environment.ts",
-                  "with": "apps/api/src/environments/environment.prod.ts"
+                  "replace": "apps/zwap-admin/src/environments/environment.ts",
+                  "with": "apps/zwap-admin/src/environments/environment.prod.ts"
                 }
-              ]
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "apps/zwap-admin/ngsw-config.json"
             }
           }
         },
         "serve": {
-          "builder": "@nrwl/builders:node-execute",
+          "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "buildTarget": "api:build"
+            "browserTarget": "zwap-admin:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "zwap-admin:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "zwap-admin:build"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "apps/api/tsconfig.app.json",
-              "apps/api/tsconfig.spec.json"
+              "apps/zwap-admin/tsconfig.app.json",
+              "apps/zwap-admin/tsconfig.spec.json"
             ],
             "exclude": ["**/node_modules/**"]
           }
@@ -167,24 +215,52 @@
         "test": {
           "builder": "@nrwl/builders:jest",
           "options": {
-            "jestConfig": "apps/api/jest.config.js",
-            "tsConfig": "apps/api/tsconfig.spec.json"
+            "jestConfig": "apps/zwap-admin/jest.config.js",
+            "tsConfig": "apps/zwap-admin/tsconfig.spec.json",
+            "setupFile": "apps/zwap-admin/src/test-setup.ts"
           }
         }
       }
     },
-    "api-interface": {
-      "root": "libs/api-interface",
-      "sourceRoot": "libs/api-interface/src",
+    "zwap-admin-e2e": {
+      "root": "apps/zwap-admin-e2e",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/builders:cypress",
+          "options": {
+            "cypressConfig": "apps/zwap-admin-e2e/cypress.json",
+            "tsConfig": "apps/zwap-admin-e2e/tsconfig.e2e.json",
+            "devServerTarget": "zwap-admin:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "zwap-admin:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/zwap-admin-e2e/tsconfig.e2e.json",
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    },
+    "core-authentication": {
+      "root": "libs/core/authentication",
+      "sourceRoot": "libs/core/authentication/src",
       "projectType": "library",
-      "prefix": "forex",
+      "prefix": "zwap",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/api-interface/tsconfig.lib.json",
-              "libs/api-interface/tsconfig.spec.json"
+              "libs/core/authentication/tsconfig.lib.json",
+              "libs/core/authentication/tsconfig.spec.json"
             ],
             "exclude": ["**/node_modules/**"]
           }
@@ -192,12 +268,110 @@
         "test": {
           "builder": "@nrwl/builders:jest",
           "options": {
-            "jestConfig": "libs/api-interface/jest.config.js",
-            "tsConfig": "libs/api-interface/tsconfig.spec.json"
+            "jestConfig": "libs/core/authentication/jest.config.js",
+            "tsConfig": "libs/core/authentication/tsconfig.spec.json",
+            "setupFile": "libs/core/authentication/src/test-setup.ts"
           }
         }
       },
-      "schematics": {}
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "material": {
+      "root": "libs/material",
+      "sourceRoot": "libs/material/src",
+      "projectType": "library",
+      "prefix": "zwap",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/material/tsconfig.lib.json",
+              "libs/material/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "libs/material/jest.config.js",
+            "tsConfig": "libs/material/tsconfig.spec.json",
+            "setupFile": "libs/material/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "static-pages": {
+      "root": "libs/static-pages",
+      "sourceRoot": "libs/static-pages/src",
+      "projectType": "library",
+      "prefix": "zwap",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/static-pages/tsconfig.lib.json",
+              "libs/static-pages/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "libs/static-pages/jest.config.js",
+            "tsConfig": "libs/static-pages/tsconfig.spec.json",
+            "setupFile": "libs/static-pages/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "core-api": {
+      "root": "libs/core/api",
+      "sourceRoot": "libs/core/api/src",
+      "projectType": "library",
+      "prefix": "zwap",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/core/api/tsconfig.lib.json",
+              "libs/core/api/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "libs/core/api/jest.config.js",
+            "tsConfig": "libs/core/api/tsconfig.spec.json",
+            "setupFile": "libs/core/api/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "cli": {
@@ -216,5 +390,5 @@
       "style": "scss"
     }
   },
-  "defaultProject": "forex"
+  "defaultProject": "zwap"
 }

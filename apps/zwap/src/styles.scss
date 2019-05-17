@@ -1,0 +1,89 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$zwap-primary: mat-palette($mat-indigo);
+$zwap-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$zwap-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$zwap-theme: mat-light-theme($zwap-primary, $zwap-accent, $zwap-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($zwap-theme);
+
+/* You can add global styles to this file, and also import other style files */
+@import './tailwind-compiled';
+
+// Button 1
+$colour1: #7b81ec;
+$colour2: #3bd1d3;
+
+// Button 2
+$colour3: #fa80d2;
+$colour4: #fed757;
+
+// Button 3
+$colour5: #8ce0f1;
+$colour6: #79f391;
+
+// Button 4
+$colour7: #525a69;
+$colour8: #898dda;
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+.button-primary {
+  background-image: linear-gradient(90deg, $colour1, $colour2);
+}
+.button-primary:before {
+  background-image: linear-gradient(90deg, $colour1, transparent);
+}
+.button-primary:after {
+  background-image: linear-gradient(90deg, transparent, $colour2);
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: unset;
+  position: absolute;
+  width: 100%;
+  min-height: 632px;
+  height: 80vh;
+  max-height: 560px;
+  box-sizing: border-box;
+  padding: 48px 48px 32px;
+  overflow: hidden;
+  -webkit-transform: skewY(8deg);
+  transform: skewY(-16deg);
+  -webkit-transform-origin: 100%;
+  transform-origin: 0%;
+}
+
+.background-sky {
+  background-color: #1976d2;
+  background: linear-gradient(145deg,#0d47a1,#42a5f5);
+  color: #fff;
+}

@@ -15,7 +15,11 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@forex/api-interface": ["libs/api-interface/src/index.ts"]
+      "@zwap/api-interface": ["libs/api-interface/src/index.ts"],
+      "@zwap/core/authentication": ["libs/core/authentication/src/index.ts"],
+      "@zwap/material": ["libs/material/src/index.ts"],
+      "@zwap/static-pages": ["libs/static-pages/src/index.ts"],
+      "@zwap/core/api": ["libs/core/api/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

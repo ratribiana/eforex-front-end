@@ -1,0 +1,25 @@
+<mat-toolbar class="bg-white relative z-10">
+  <div class="container lg mx-auto px-4 text-grey-darkest font-normal flex">
+    <div class="mr-10">
+      <img
+        width="40"
+        src="https://raw.githubusercontent.com/nrwl/nx/master/nx-logo.png"
+        class="pr-2"
+      />
+      Zwap
+    </div>
+    <div class="w-full flex flex-row md:justify-between justify-end lg:justify-between">
+      <div class="hidden md:inline-flex">
+        <button class="py-2 px-4 text-sm focus:outline-none" routerLink="">Home</button>
+        <button class="py-2 px-4 text-sm focus:outline-none" routerLink="about">About</button>
+        <button class="py-2 px-4 text-sm focus:outline-none" routerLink="contact">Contact</button>
+        <button class="py-2 px-4 text-sm focus:outline-none" routerLink="rates">Rates</button>
+      </div>
+      <div class="self-end">
+        <button class="py-2 px-4 text-sm focus:outline-none" routerLink="login">Login</button>
+      </div>
+    </div>
+  </div>
+</mat-toolbar>
+<router-outlet></router-outlet>
+

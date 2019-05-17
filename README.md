@@ -1,4 +1,4 @@
-# Forex
+# Zwap
 
 This project was generated using [Nx](https://nx.dev).
 
@@ -6,19 +6,13 @@ This project was generated using [Nx](https://nx.dev).
 
 🔎 **Nx is a set of Angular CLI power-ups for modern development.**
 
-## Quick Start & Documentation
+## Running Development Server
 
-[30-minute video showing all Nx features](https://nx.dev/getting-started/what-is-nx)
+`ng serve zwap --aot -o` to open `http://localhost:4200/`
 
-[Interactive tutorial](https://nx.dev/tutorial/01-create-application)
+`ng serve zwap-admin --aot -o --port 4201` to open `http://localhost:4201/`
 
-## Generate your first application
-
-Run `ng g app myapp` to generate an application. When using Nx, you can create multiple applications and libraries in the same CLI workspace.
-
-## Development server
-
-Run `ng serve myapp` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
@@ -26,7 +20,7 @@ Run `ng generate component component-name --project=myapp` to generate a new com
 
 ## Build
 
-Run `ng build myapp` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Run `ng build zwap|zwap-admin` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
 ## Running unit tests
 

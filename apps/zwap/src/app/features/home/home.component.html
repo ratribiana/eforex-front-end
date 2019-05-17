@@ -1,0 +1,63 @@
+<div class="background-sky hero"></div>
+<div class="container lg mx-auto px4 relative">
+  <div class="mx-5">
+    <div class="bg-white max-w-sm rounded-lg overflow-hidden shadow-lg mx-auto mt-5 lg:mt-20">
+      <mat-vertical-stepper #stepper>
+        <mat-step>
+          <ng-template matStepLabel>Booking</ng-template>
+          <div class="step-container mr-8">
+            <div class="flex justify-between items-center mb-5">
+              <div class="font-normal text-sm">Enter Exchange Amount</div>
+              <div class="font-normal text-xs" *ngIf="rate">
+                1 {{ selectedRateFrom }} = {{ rate | currency:selectedRateTo:'code' }}
+              </div>
+            </div>
+            <div class="flex">
+              <mat-form-field class="w-155px">
+                <mat-label>From</mat-label>
+                <mat-select (selectionChange)="rateSelectionChange($event)">
+                  <mat-option *ngFor="let rate of rates$ | async; let i = index" [value]="rate">
+                    {{ rate.base }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field class="w-full">
+                <input type="number" matInput autocomplete="off"/>
+              </mat-form-field>
+            </div>
+            <div class="flex">
+              <mat-form-field class="w-155px">
+                <mat-label>To</mat-label>
+                <mat-select (selectionChange)="getSelectedExchangeRate($event)">
+                  <mat-option *ngFor="let ratesTo of ratesTo; let i = index" [value]="ratesTo">
+                    {{ ratesTo }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field class="w-full">
+                <input type="number" matInput autocomplete="off"/>
+              </mat-form-field>
+            </div>
+            <div class="mt-5">
+              <button class="button-primary text-white font-normal py-2 px-10 rounded-full shadow-md">Continue</button>
+            </div>
+          </div>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Collection</ng-template>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Payment</ng-template>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Receipt</ng-template>
+          You are now done.
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="stepper.reset()">Reset</button>
+          </div>
+        </mat-step>
+      </mat-vertical-stepper>
+    </div>
+  </div>
+</div>

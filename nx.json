@@ -1,5 +1,5 @@
 {
-  "npmScope": "forex",
+  "npmScope": "zwap",
   "implicitDependencies": {
     "angular.json": "*",
     "package.json": "*",
@@ -8,16 +8,34 @@
     "nx.json": "*"
   },
   "projects": {
-    "forex": {
+    "zwap": {
       "tags": []
     },
-    "forex-e2e": {
+    "zwap-e2e": {
       "tags": []
     },
     "api": {
       "tags": []
     },
     "api-interface": {
+      "tags": []
+    },
+    "zwap-admin": {
+      "tags": []
+    },
+    "zwap-admin-e2e": {
+      "tags": []
+    },
+    "core-authentication": {
+      "tags": []
+    },
+    "material": {
+      "tags": []
+    },
+    "static-pages": {
+      "tags": []
+    },
+    "core-api": {
       "tags": []
     }
   }

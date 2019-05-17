@@ -1,0 +1,47 @@
+<div class="background-sky hero"></div>
+
+<div class="container lg mx-auto px4 relative">
+  <div class="flex lg:justify-between mt-5 lg:mt-20 justify-center">
+    <div class="hidden lg:block w-1/2">
+      <div class="pt-20 pl-20">
+        <div class="font-normal text-xl mb-2 text-white">Zwap</div>
+        <p class="text-sm text-white">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+          culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+      </div>
+    </div>
+    <div class="bg-white max-w-sm rounded-lg overflow-hidden shadow-lg lg:mr-20 lg:mx-0 mx-5">
+      <form [formGroup]="form" (ngSubmit)="handleForm()" class="flex flex-col">
+        <div class="px-6 py-4">
+          <div class="font-bold text-xl mb-2">Login</div>
+        </div>
+        <div class="px-6 py-4">
+          <mat-form-field class="w-full" appearance="outline">
+            <mat-label>Username</mat-label>
+            <input type="text" matInput formControlName="username" placeholder="Username"/>
+          </mat-form-field>
+          <mat-form-field class="w-full" appearance="outline">
+            <mat-label>Password</mat-label>
+            <input type="password" matInput formControlName="password" placeholder="*********"/>
+          </mat-form-field>
+        </div>
+        <div class="px-6 py-4 self-center">
+          <button class="button-primary text-white font-normal py-2 px-10 rounded-full shadow-md">
+            Sign in
+          </button>
+        </div>
+
+        <div class="font-normal px-6 py-6 text-center">
+          <p class="text-sm">Don't have an Zwap Account?</p>
+          <a routerLink="../register" class="text-sm text-blue no-underline">Register Now</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
