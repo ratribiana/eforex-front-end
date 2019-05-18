@@ -9,6 +9,9 @@ import { MaterialModule } from '@zwap/material';
 import { CoreApiModule } from '@zwap/core/api';
 
 import { environment } from '../../environments/environment';
+import { ReactiveFormsModule } from '@angular/forms';
+
+import { NgxCurrencyModule } from "ngx-currency";
 
 @NgModule({
   imports: [
@@ -19,6 +22,8 @@ import { environment } from '../../environments/environment';
       { path: 'rates', component: RatesComponent }
     ]),
     CoreApiModule.forRoot({url: environment.baseUrl}),
+    ReactiveFormsModule,
+    NgxCurrencyModule
   ],
   declarations: [ HomeComponent, RatesComponent ],
   exports: [ RouterModule ]
