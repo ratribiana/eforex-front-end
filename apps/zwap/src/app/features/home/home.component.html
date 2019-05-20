@@ -79,6 +79,31 @@
         </mat-step>
         <mat-step>
           <ng-template matStepLabel>Payment</ng-template>
+          <form [formGroup]="payment" (ngSubmit)="handlePayment()">
+            <ng-container *ngIf="countries$ | async as countries">
+              <mat-form-field class="w-full">
+                <mat-label>County</mat-label>
+                <mat-select (selectionChange)="getSelectedCountry($event)">
+                  <mat-option *ngFor="let country of countries; let i = index" [value]="country.countryCode">
+                    <span [class]="'flag-icon flag-icon-'+ (country.countryCode | lowercase) +' flag-icon-squared'"></span> {{ country.countryName }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </ng-container>
+            <ng-container>
+              <mat-form-field class="w-full">
+                <mat-label>State/Province</mat-label>
+                <mat-select>
+                  <mat-option>-- None --</mat-option>
+                  <mat-optgroup *ngFor="let group of states$ | async" [label]="group.stateName">
+                    <mat-option *ngFor="let item of group.cities" [value]="item.name">
+                      {{ item.name }}
+                    </mat-option>
+                  </mat-optgroup>
+                </mat-select>
+              </mat-form-field>
+            </ng-container>
+          </form>
         </mat-step>
         <mat-step>
           <ng-template matStepLabel>Receipt</ng-template>

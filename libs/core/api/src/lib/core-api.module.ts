@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { ExchangeRatesService } from './exchange-rates/exchange-rates.service';
 import { TransactionsService } from './transactions/transactions.service';
+import { PaymentService } from './payment/payment.service';
 
 import { BaseUrl } from './config.model';
 
@@ -23,7 +24,8 @@ export class CoreApiModule {
       providers: [
         { provide: BaseUrl, useValue: baseUrl },
         ExchangeRatesService,
-        TransactionsService
+        TransactionsService,
+        PaymentService,
       ]
     };
   }
