@@ -45,7 +45,7 @@
             </div>
           </form>
         </mat-step>
-        <mat-step>
+        <mat-step [stepControl]="collection">
           <ng-template matStepLabel>Collection</ng-template>
           <form [formGroup]="collection" (ngSubmit)="handleCollection()">
             <mat-form-field class="w-full">
@@ -73,17 +73,17 @@
               <input type="text" matInput formControlName="idNumber" placeholder="ID Number"/>
             </mat-form-field>
             <div class="mt-5">
-              <button class="button-primary text-white font-normal py-2 px-10 rounded-full shadow-md" type="submit" [disabled]="!collection.valid">Continue</button>
+              <button class="button-primary text-white font-normal py-2 px-10 rounded-full shadow-md" type="submit" matStepperNext [disabled]="!collection.valid">Continue</button>
             </div>
           </form>
         </mat-step>
-        <mat-step>
+        <mat-step [stepControl]="payment">
           <ng-template matStepLabel>Payment</ng-template>
           <form [formGroup]="payment" (ngSubmit)="handlePayment()">
             <ng-container *ngIf="countries$ | async as countries">
               <mat-form-field class="w-full">
                 <mat-label>County</mat-label>
-                <mat-select (selectionChange)="getSelectedCountry($event)">
+                <mat-select formControlName="country" (selectionChange)="getSelectedCountry($event)">
                   <mat-option *ngFor="let country of countries; let i = index" [value]="country.countryCode">
                     <span [class]="'flag-icon flag-icon-'+ (country.countryCode | lowercase) +' flag-icon-squared'"></span> {{ country.countryName }}
                   </mat-option>
@@ -93,7 +93,7 @@
             <ng-container>
               <mat-form-field class="w-full">
                 <mat-label>State/Province</mat-label>
-                <mat-select>
+                <mat-select formControlName="state">
                   <mat-option>-- None --</mat-option>
                   <mat-optgroup *ngFor="let group of states$ | async" [label]="group.stateName">
                     <mat-option *ngFor="let item of group.cities" [value]="item.name">
@@ -103,6 +103,7 @@
                 </mat-select>
               </mat-form-field>
             </ng-container>
+            <button class="button-primary text-white font-normal py-2 px-10 rounded-full shadow-md" type="submit" matStepperNext [disabled]="!payment.valid">Continue</button>
           </form>
         </mat-step>
         <mat-step>

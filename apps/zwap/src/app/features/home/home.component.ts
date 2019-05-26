@@ -89,16 +89,13 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   buildForm() {
-    this.form = this.fb.group({
-
-    });
-
     this.booking = this.fb.group({
       currencyFrom: ['', [ Validators.required ]],
       amountFrom: ['', [ Validators.required ]],
       currencyTo: ['', [ Validators.required ]],
       amountTo: ['', [ Validators.required ]]
     });
+
     this.collection = this.fb.group({
       firstname: ['', [ Validators.required ]],
       lastname: ['', [ Validators.required ]],
@@ -110,9 +107,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     this.payment = this.fb.group({
       country: ['', [ Validators.required ]],
-      state: ['', [ Validators.required ]],
-      municipalities: ['', [ Validators.required ]],
-
+      state: ['', [ Validators.required ]]
     });
   }
 
